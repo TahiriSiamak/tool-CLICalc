@@ -1,6 +1,6 @@
 <h1>Calculator v1.0</h1>
 <p><i>Please make sure you understand that this is not yet ready for production. Use this at your own risk.</i></p>
-<p><b>Contact: <a href="siamak.tahiri@concepts-and-training.de">Siamak Tahiri</b></p></a>
+<p><b>Contact: <a href="mailto:siamak.tahiri@concepts-and-training.de">Siamak Tahiri</b></p></a>
 
 <h2>Prerequisits</h2>
 
