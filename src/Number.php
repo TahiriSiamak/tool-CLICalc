@@ -15,5 +15,4 @@ class Number implements Expression {
 	public function evaluate() {
 		return $this->number;
 	}
-
 }
