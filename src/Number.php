@@ -2,21 +2,18 @@
 
 namespace CaT\CLICalc;
 
-/**
- * A number is an expression.
- */
 class Number implements Expression {
-	/**
-	 * @param	int	the number
-	 */
+
+	private $number;
+
 	public function __construct($number) {
-		// TODO: fill me
+		if(!is_numeric($number)) {
+			throw new \InvalidArgumentException($number." is not nummeric");
+		}
+		$this->number = $number;
+	}
+	public function evaluate() {
+		return $this->number;
 	}
 
-	/**
-	 * @inheritdoc
-	 */
-	public function evaluate() {
-		// TODO: fill me
-	}
 }

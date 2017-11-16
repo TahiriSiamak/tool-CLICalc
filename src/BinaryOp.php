@@ -1,24 +1,27 @@
 <?php
-
 namespace CaT\CLICalc;
 
-/**
- * A binary operation on two other expression is an expression as well.
- */
 class BinaryOp implements Expression {
-	/**
-	 * @param	string		$op
-	 * @param	Expression	$left
-	 * @param	Expression	$right
-	 */
-	public function __construct($op, Expression $left, Expression $right) {
-		// TODO: fill me
-	}
 
-	/**
-	 * @inheritdoc
-	 */
+	private $op;
+
+	private $left;
+
+	private $right;
+
+	public function __construct(string $op, Expression $left, Expression $right) {
+		$this->op = $op;
+		$this->left = $left;
+		$this->right = $right;
+	}
 	public function evaluate() {
-		// TODO: fill me
+		Switch($this->op)
+		{
+			case "+": return $this->left->evaluate() + $this->right->evaluate(); break;
+			case "-": return $this->left->evaluate() - $this->right->evaluate(); break;
+			case "*": return $this->left->evaluate() * $this->right->evaluate(); break;
+			case "/": return $this->left->evaluate() / $this->right->evaluate(); break;
+			default: echo "Kein gültiger Operator";
+		}
 	}
 }
