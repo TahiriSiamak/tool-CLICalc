@@ -4,19 +4,15 @@ use CaT\CLICalc\Expression;
 use CaT\CLICalc\Number;
 use CaT\CLICalc\BinaryOp;
 
-// This is a test for all kinds of expressions.
 class ExpressionTest extends PHPUnit_Framework_TestCase {
 	public function test_number_1() {
 		$number = new Number(1);
 		$this->assertEquals(1, $number->evaluate());
 	} 
-
 	public function test_number_10() {
-		// TODO: fill
 		$number = new Number(10);
 		$this->assertEquals(10, $number->evaluate());
 	}
-
 	public function test_plus() {
 		$node = new BinaryOp
 					( "+"
@@ -25,7 +21,6 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(15, $node->evaluate());
 	}
-
 	public function test_multiplication() {
 		$node = new BinaryOp
 					( "*"
@@ -34,19 +29,14 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(12, $node->evaluate());
 	}
-
 	public function test_subtraction() {
-		// TODO: fill me
 		$node = new BinaryOp("-", new Number(6), new Number(2));
 		$this->assertEquals(4, $node->evaluate());
 	}
-
 	public function test_division() {
-		// TODO: fill me
 		$node = new BinaryOp("/", new Number(6), new Number(2));
 		$this->assertEquals(3, $node->evaluate());
 	}
-
 	public function test_complex_1() {
 		$node = new BinaryOp
 					( "*"
@@ -59,7 +49,6 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(14, $node->evaluate());
 	}
-
 	public function test_complex_2() {
 		$node = new BinaryOp
 					( "*"
@@ -76,9 +65,7 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(21, $node->evaluate());
 	}
-
 	public function test_complex_3() {
-		// TODO: fill me
 		$node = new BinaryOp
 					( "*"
 					, new Number(2)
@@ -90,9 +77,7 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(-2, $node->evaluate());
 	}
-
 	public function test_complex_4() {
-		// TODO: fill me
 		$node = new BinaryOp
 					( "*"
 					, new BinaryOp
@@ -108,7 +93,6 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 					);
 		$this->assertEquals(1, $node->evaluate());
 	}
-
 	public function test_invalid_number_construction()
 	{
 		try {
@@ -119,5 +103,10 @@ class ExpressionTest extends PHPUnit_Framework_TestCase {
 			$this->assertTrue(true);
 
 		}
+	}
+	public function test_devide()
+	{
+		$bin = new BinaryOp('/',new Number(1),new Number(2));
+		var_dump($bin->evaluate());
 	}
 }
