@@ -53,8 +53,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$_expression = new BinaryOp
 					( "*",
 					new Number(2),
-					new Number(3),
-					new BinaryOp("+", new Number(4)));
+					new BinaryOp("+", new Number(3), new Number(4)));
 		$this->assertEquals($expression,$_expression);
 	}
 
