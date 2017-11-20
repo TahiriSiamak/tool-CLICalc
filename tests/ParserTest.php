@@ -104,4 +104,16 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(4);
 		$this->assertEquals(7,$_expression);
 	}
+	public function test_Spaces()
+	{
+		$parser = new Parser();
+		$expression = $parser->parse("/3+ 4");
+		$expression = preg_replace("/\s+/", "", $expression);
+		$_expression = new BinaryOp
+					( "+",
+					new Number(3),
+					new Number(4);
+		$this->assertEquals(7,$_expression);
+	}
+
 }
