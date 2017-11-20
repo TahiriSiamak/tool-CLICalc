@@ -2,7 +2,7 @@
 
 namespace CaT\CLICalc;
 
-class Parser{ 
+class Parser { 
 	/**
 	 * Turn the string into an expression.
 	 *
