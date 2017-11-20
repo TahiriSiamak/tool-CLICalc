@@ -7,7 +7,7 @@
 <h3>Software requirements</h3>
 
  <ul>
-  <li>PHP 5.6 or higher</li>
+  <li>PHP 7</li>
 </ul> 
 
 <h2>Usage</h2>

@@ -10,6 +10,13 @@ class Parser {
 	 * @throws	\InvalidArgumentException	if $input is not a valid exception
 	 * @return	Expression
 	 */
+	$input; 
+
+	public function Parser (string $input)
+	{
+		this->input = $input;
+	}
+
 	public function parse(string $input) {
 		if($input=="")
 		{
