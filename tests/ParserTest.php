@@ -53,8 +53,10 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 	{
 		$parser = new Parser();
 		$expression = $parser->parse("2*3+4");
-		$_expression = new BinaryOp("+", new Number(4),
-					   new BinaryOp("*", new Number(2), new Number(3)));
+		$_expression = new BinaryOp("+", 
+					   new BinaryOp("*", new Number(2), new Number(3)),
+					   new Number(4));
+
 		$this->assertEquals($_expression,$expression);
 	}
 	public function test_SingleExpression()
@@ -78,20 +80,18 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 	{
 		$parser = new Parser();
 		$expression = $parser->parse("3-4+3");
-		$_expression = new BinaryOp
-					( "+",
-					new Number(3),
-					new BinaryOp("-", new Number(3), new Number(4)));
+		$_expression = new BinaryOp("+",
+					   new BinaryOp("-", new Number(3), new Number(4)),
+					   new Number(3));
 		$this->assertEquals($_expression, $expression);
 	}
 	public function test_EdgeCase2()
 	{
 		$parser = new Parser();
 		$expression = $parser->parse("3-4-5");
-		$_expression = new BinaryOp
-					( "-", 
-					new Number(5),
-					new BinaryOp("-", new Number(3), new Number(4)));
+		$_expression = new BinaryOp("-",
+					   new BinaryOp("-", new Number(3), new Number(4)),
+					   new Number(5));
 		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Spaces()
