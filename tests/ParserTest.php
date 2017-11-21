@@ -114,5 +114,16 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(4));
 		$this->assertEquals($_expression,$expression);
 	}
+	public function test_Token()
+	{
+		$parser = new Parser();
+		$expression = $parser->token("2+3");
+		$_expression = new BinaryOp
+					( "+",
+					 new Number(2),
+					 new Number(3)
+					);
+		$this->assertArraySubset();
+	}
 
 }
