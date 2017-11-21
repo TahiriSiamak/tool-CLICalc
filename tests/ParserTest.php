@@ -1,6 +1,8 @@
 <?php
 
 use CaT\CLICalc\Parser;
+use CaT\CLICalc\BinaryOp;
+use CaT\CLICalc\Number;
 
 class ParserTest extends PHPUnit_Framework_TestCase {
 	public function test_Addition()
@@ -12,7 +14,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					 new Number(1),
 					 new Number(2)
 					);
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Multiplication()
 	{
@@ -23,7 +25,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(3),
 					new Number(2)
 					);
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Subtraktion()
 	{
@@ -34,7 +36,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(8),
 					new Number(3)
 					);
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Division()
 	{
@@ -45,7 +47,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(18),
 					new Number(2)
 					);
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Complex()
 	{
@@ -53,14 +55,14 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$expression = $parser->parse("2*3+4");
 		$_expression = new BinaryOp("+", new Number(4),
 					   new BinaryOp("*", new Number(2), new Number(3)));
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_SingleExpression()
 	{
 		$parser = new Parser();
 		$expression = $parser->parse("3");
 		$new_number = new Number(3);
-		$this->assertEquals($expression, $new_number);
+		$this->assertEquals($new_number,$expression);
 	}
 	public function test_Brackets()
 	{
@@ -70,7 +72,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					( "*",
 					new Number(2),
 					new BinaryOp("+", new Number(3), new Number(4)));
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_EdgeCase1()
 	{
@@ -80,7 +82,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					( "+",
 					new Number(3),
 					new BinaryOp("-", new Number(3), new Number(4)));
-		$this->assertEquals($expression, $_expression);
+		$this->assertEquals($_expression, $expression);
 	}
 	public function test_EdgeCase2()
 	{
@@ -90,7 +92,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					( "-", 
 					new Number(5),
 					new BinaryOp("-", new Number(3), new Number(4)));
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Spaces()
 	{
@@ -100,7 +102,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					( "+",
 					new Number(3),
 					new Number(4));
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 	public function test_Whitespaces()
 	{
@@ -110,7 +112,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					( "+",
 					new Number(3),
 					new Number(4));
-		$this->assertEquals($expression,$_expression);
+		$this->assertEquals($_expression,$expression);
 	}
 
 }
