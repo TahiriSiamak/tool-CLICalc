@@ -1,5 +1,7 @@
 <?php
 
+use CaT\CLICalc\Parser;
+
 class ParserTest extends PHPUnit_Framework_TestCase {
 	public function test_Addition()
 	{
@@ -49,8 +51,8 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 	{
 		$parser = new Parser();
 		$expression = $parser->parse("2*3+4");
-		$_expression = new BinaryOp("*", new Number(2),
-					   new BinaryOp("+", new Number(3), new Number(4)));
+		$_expression = new BinaryOp("+", new Number(4),
+					   new BinaryOp("*", new Number(2), new Number(3)));
 		$this->assertEquals($expression,$_expression);
 	}
 	public function test_SingleExpression()
@@ -85,8 +87,8 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$parser = new Parser();
 		$expression = $parser->parse("3-4-5");
 		$_expression = new BinaryOp
-					( "-",
-					new Number(-5),
+					( "-", 
+					new Number(5),
 					new BinaryOp("-", new Number(3), new Number(4)));
 		$this->assertEquals($expression,$_expression);
 	}
@@ -95,20 +97,20 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$parser = new Parser();
 		$expression = $parser->parse("3 + 4");
 		$_expression = new BinaryOp
-					( " + ",
+					( "+",
 					new Number(3),
-					new Number(4);
+					new Number(4));
 		$this->assertEquals($expression,$_expression);
 	}
-	/*public function test_Whitespaces()
+	public function test_Whitespaces()
 	{
 		$parser = new Parser();
-		$expression = $parser->parse("3+/4");
+		$expression = $parser->parse("3 +	4");
 		$_expression = new BinaryOp
-					( "+/",
+					( "+",
 					new Number(3),
-					new Number(4);
+					new Number(4));
 		$this->assertEquals($expression,$_expression);
-	}*/
+	}
 
 }
