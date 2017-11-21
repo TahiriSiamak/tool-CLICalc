@@ -2,7 +2,7 @@
 
 namespace CaT\CLICalc;
 
-class Parser { 
+class Parser {
 	/**
 	 * Turn the string into an expression.
 	 *
@@ -10,18 +10,6 @@ class Parser {
 	 * @throws	\InvalidArgumentException	if $input is not a valid exception
 	 * @return	Expression
 	 */
-	$input; 
-
-	public function Parser (string $input)
-	{
-		this->input = $input;
-	}
-
 	public function parse(string $input) {
-		if($input=="")
-		{
-			throw new \InvalidArgumentException("Leere Eingabe");
-		}
-		//return Expression;
 	}
 }
