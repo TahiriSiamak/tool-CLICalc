@@ -114,16 +114,61 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 					new Number(4));
 		$this->assertEquals($_expression,$expression);
 	}
-	public function test_Token()
+	public function test_tokenize1()
 	{
 		$parser = new Parser();
-		$expression = $parser->token("2+3");
-		$_expression = new BinaryOp
-					( "+",
-					 new Number(2),
-					 new Number(3)
-					);
-		$this->assertArraySubset();
+		$tokens = $parser->tokenize("2+3");
+		$_tokens = array("2", "+", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
 	}
+	public function test_tokenizeWhitespace()
+	{
+		$parser = new Parser();
+		$tokens = $parser->tokenize("2 + 3");
+		$_tokens = array("2", "+", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
+	}
+	public function test_tokenizeFalse()
+	{
+		$parser = new Parser();
+		
+		try {
+			$parser->tokenize("2x3");
+			$raised = false;
+		}
+		catch (\InvalidArgumentException $e) {
+			$raised = true;
+		}
 
+		$this->assertTrue($raised, "Expected method to raise an InvalidArgumentException.");
+	}
+	
+	public function test_tokenize2()
+	{
+		$parser = new Parser();
+		$tokens = $parser->tokenize("22+3");
+		$_tokens = array("22", "+", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
+	}
+	public function test_tokenizeMultiplication()
+	{
+		$parser = new Parser();
+		$tokens = $parser->tokenize("22*3");
+		$_tokens = array("22", "*", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
+	}
+	
+	public function test_tokenizeBrackets()
+	{
+		$parser = new Parser();
+		$tokens = $parser->tokenize("(3*22)+3");
+		$_tokens = array( "(", "3", "*","22", ")", "+", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
+	}
+	
 }
