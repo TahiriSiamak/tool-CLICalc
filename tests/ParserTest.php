@@ -173,7 +173,7 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 	public function test_findChar_succeed1()
 	{
 		$parser = new Parser();
-		$string = "abc13def";
+		$string = "abc213def";
 		$chars = ["1", "2", "3"];
 		$pos = $parser->findChar($string, $chars);
 		$expected = 3;
@@ -198,5 +198,40 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$pos = $parser->findChar($string, $chars);
 		$expected = strlen($string);
 		$this->assertEquals($expected, $pos);
+	}
+
+	public function test_splitAt_succeed1()
+	{
+		$parser = new Parser();
+		$string = "abc213def";
+		$chars = ["1", "2", "3"];
+		$result = $parser->splitAt($string, $chars);
+		$this->assertCount(2, $result);
+		list($head, $tail) = $result;
+		$this->assertEquals("abc", $head);
+		$this->assertEquals("213def", $tail);
+	}
+
+	public function test_splitAt_succeed2()
+	{
+		$parser = new Parser();
+		$string = "abc13def";
+		$chars = ["3"];
+		$result = $parser->splitAt($string, $chars);
+		$this->assertCount(2, $result);
+		list($head, $tail) = $result;
+		$this->assertEquals("abc1", $head);
+		$this->assertEquals("3def", $tail);
+	}
+
+	public function test_splitAt_fail1()
+	{
+		$parser = new Parser();
+		$string = "abc13def";
+		$chars = ["4"];
+		$result = $parser->splitAt($string, $chars);
+		$this->assertCount(1, $result);
+		list($rest) = $result;
+		$this->assertEquals("abc13def", $rest);
 	}
 }

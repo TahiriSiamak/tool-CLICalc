@@ -60,4 +60,17 @@ class Parser {
 		}
 		return strlen($input);
 	}
+
+	/**
+	 * Takes the string and chop it in two pieces before the first location one
+	 * of the given characters is found. Will return the complete string if
+	 * none of the characters is found.
+	 *
+	 * @param	string	$input
+	 * @param	string  $chars
+	 * @return	string[] with two elements
+	 */
+	public function splitAt(string $input, array $chars)
+	{
+	}
 }
