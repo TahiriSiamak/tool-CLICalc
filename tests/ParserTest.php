@@ -122,6 +122,14 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals($_tokens, $tokens);
 	}
+	public function test_tokenize2()
+	{
+		$parser = new Parser();
+		$tokens = $parser->tokenize("22+3");
+		$_tokens = array("22", "+", "3");
+		
+		$this->assertEquals($_tokens, $tokens);
+	}
 	public function test_tokenizeWhitespace()
 	{
 		$parser = new Parser();
@@ -144,15 +152,6 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertTrue($raised, "Expected method to raise an InvalidArgumentException.");
 	}
-	
-	public function test_tokenize2()
-	{
-		$parser = new Parser();
-		$tokens = $parser->tokenize("22+3");
-		$_tokens = array("22", "+", "3");
-		
-		$this->assertEquals($_tokens, $tokens);
-	}
 	public function test_tokenizeMultiplication()
 	{
 		$parser = new Parser();
@@ -170,5 +169,34 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals($_tokens, $tokens);
 	}
-	
+
+	public function test_findChar_succeed1()
+	{
+		$parser = new Parser();
+		$string = "abc13def";
+		$chars = ["1", "2", "3"];
+		$pos = $parser->findChar($string, $chars);
+		$expected = 3;
+		$this->assertEquals($expected, $pos);
+	}
+
+	public function test_findChar_succeed2()
+	{
+		$parser = new Parser();
+		$string = "abc13def";
+		$chars = ["3"];
+		$pos = $parser->findChar($string, $chars);
+		$expected = 4;
+		$this->assertEquals($expected, $pos);
+	}
+
+	public function test_findChar_fail1()
+	{
+		$parser = new Parser();
+		$string = "abc13def";
+		$chars = ["4"];
+		$pos = $parser->findChar($string, $chars);
+		$expected = strlen($string);
+		$this->assertEquals($expected, $pos);
+	}
 }
