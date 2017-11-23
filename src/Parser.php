@@ -25,17 +25,7 @@ class Parser {
 
 		}
 	}
-	/**
-	 * Removes Whitespaces outside and within the string $input
-	 *
-	 * @param string $input
-	 * 
-	 */
-	public function removeWhitespaces(string $input)
-	{
-		$string = trim($string, " \t.");
-		echo $string . "\n";
-	}
+	
 	/**
 	 * Dismantles the string into its individual parts and return them as an array
 	 *
@@ -45,22 +35,6 @@ class Parser {
 	 */
 	public function tokenize(string $input)
 	{
-		$pos = strpos($input, $op);
-		echo substr($input, 0, $pos) . "\n";
-		echo substr($input, 2, --$pos) . "\n";
-		echo substr($input, 3, strlen($input));
-
-
-
-
-
-		for($i = 0; $i < strlen($input); $i++)
-		{
-			$arr1 = $input[$i];
-		}
-			echo $arr[$i] . "\n";
-		}
-		return $arr;
 	}
 
 	/**
@@ -74,11 +48,16 @@ class Parser {
 	 */
 	public function findChar(string $input, array $chars)
 	{
-	}
-
-	public function determineOp ($input)
-	{
-		$op = 
+		for($i = 0; $i < strlen($input); $i++)
+		{
+			for($j = 0; $j < count($chars); $j++)
+			{
+				if($input[$i] == $chars[$j])
+				{
+					return $i;
+				}
+			}
+		}
+		return strlen($input);
 	}
 }
-
