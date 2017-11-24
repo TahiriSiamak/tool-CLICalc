@@ -63,8 +63,9 @@ class Parser {
 
 	/**
 	 * Takes the string and chop it in two pieces before the first location one
-	 * of the given characters is found. Will return the complete string if
-	 * none of the characters is found.
+	 * of the given characters is found. Will return the complete string as first
+	 * element and an empty string as second element if  none of the characters
+	 * is found.
 	 *
 	 * @param	string	$input
 	 * @param	string  $chars
@@ -72,5 +73,15 @@ class Parser {
 	 */
 	public function splitAt(string $input, array $chars)
 	{
+		$pos = $this->findChar($input, $chars);
+
+		if($pos == strlen($input))
+		{
+			return [$input, ""];
+		}
+
+		$tail = substr($input, $pos);
+		$head = substr($input, 0, $pos);
+		return [$head, $tail];
 	}
 }

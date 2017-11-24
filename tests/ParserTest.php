@@ -230,8 +230,9 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 		$string = "abc13def";
 		$chars = ["4"];
 		$result = $parser->splitAt($string, $chars);
-		$this->assertCount(1, $result);
-		list($rest) = $result;
-		$this->assertEquals("abc13def", $rest);
+		$this->assertCount(2, $result);
+		list($head, $tail) = $result;
+		$this->assertEquals("abc13def", $head);
+		$this->assertEquals("", $tail);
 	}
 }
