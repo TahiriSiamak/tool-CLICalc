@@ -20,9 +20,8 @@ class Parser {
 			}
 			if(is_string($input))
 			{
-				token($input);
+				tokenize($input);
 			}
-
 		}
 	}
 	
@@ -35,6 +34,23 @@ class Parser {
 	 */
 	public function tokenize(string $input)
 	{
+		$teilstring;
+		$i;
+
+		if(!is_numeric($input) && $input != "+" && $input != "-" && $input != "*" && $input != "/")
+		{
+			throw new Exception("Unknown character.");
+		}
+
+		for($i = 0; $i <= strlen($input); $i++)
+		{
+			$teilstring[$i] = substr($input, $i, 1);
+		}
+		//$input_array = str_split($teilstring ,1);
+
+		$this->splitAt($input, $teilstring);
+
+		//return $teilstring;
 	}
 
 	/**
